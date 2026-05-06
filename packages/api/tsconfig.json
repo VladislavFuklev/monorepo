@@ -2,6 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@fintech/config/tsconfig",
   "compilerOptions": {
+    "lib": ["ES2020", "dom"],
     "baseUrl": ".",
     "paths": {
       "@fintech/types": ["../types/src/index.ts"]
