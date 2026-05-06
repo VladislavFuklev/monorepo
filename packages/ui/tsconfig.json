@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@fintech/config/tsconfig/react-library",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@fintech/types": ["../types/src/index.ts"]
+    },
+    "tsBuildInfoFile": ".tsbuildinfo"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
