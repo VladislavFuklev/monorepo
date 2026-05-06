@@ -1,0 +1,49 @@
+name: Deploy Admin
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-admin
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy apps/admin → Vercel
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: production-admin
+      url: ${{ steps.deploy.outputs.url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build admin
+        run: pnpm turbo run build --filter=@fintech/admin
+        env:
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+
+      - name: Deploy to Vercel
+        id: deploy
+        run: |
+          URL=$(npx vercel deploy apps/admin --prod \
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --scope=${{ secrets.VERCEL_ORG_ID }})
+          echo "url=$URL" >> $GITHUB_OUTPUT

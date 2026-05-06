@@ -1,0 +1,61 @@
+name: Deploy Web
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-web
+  cancel-in-progress: false  # деплой не отменяем
+
+jobs:
+  deploy:
+    name: Deploy apps/web → Vercel
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: production-web
+      url: ${{ steps.deploy.outputs.url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build web
+        run: pnpm turbo run build --filter=@fintech/web
+        env:
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+
+      - name: Deploy to Vercel
+        id: deploy
+        run: |
+          URL=$(npx vercel deploy apps/web --prod \
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --scope=${{ secrets.VERCEL_ORG_ID }})
+          echo "url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Comment PR with URL
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✅ Web deployed: ${{ steps.deploy.outputs.url }}`
+            })
