@@ -4,12 +4,11 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "dev:web": "turbo run dev --filter=@fintech/web",
-    "dev:admin": "turbo run dev --filter=@fintech/admin",
-    "lint": "turbo run lint",
-    "lint:fix": "turbo run lint -- --fix",
+    "dev:react": "turbo run dev --filter=@fintech/app-react",
+    "dev:typescript": "turbo run dev --filter=@fintech/app-typescript",
+    "dev:monorepo": "turbo run dev --filter=@fintech/app-monorepo",
     "type-check": "turbo run type-check",
-    "clean": "turbo run clean && find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
+    "clean": "turbo run clean"
   },
   "devDependencies": {
     "turbo": "^2.3.3"

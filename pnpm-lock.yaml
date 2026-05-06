@@ -12,14 +12,11 @@ importers:
         specifier: ^2.3.3
         version: 2.9.9
 
-  apps/admin:
+  apps/monorepo:
     dependencies:
-      '@fintech/api':
+      '@fintech/interview-data':
         specifier: workspace:*
-        version: link:../../packages/api
-      '@fintech/types':
-        specifier: workspace:*
-        version: link:../../packages/types
+        version: link:../../packages/interview-data
       '@fintech/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -55,14 +52,51 @@ importers:
         specifier: ^5.7.3
         version: 5.9.3
 
-  apps/web:
+  apps/react:
     dependencies:
-      '@fintech/api':
+      '@fintech/interview-data':
         specifier: workspace:*
-        version: link:../../packages/api
-      '@fintech/types':
+        version: link:../../packages/interview-data
+      '@fintech/ui':
         specifier: workspace:*
-        version: link:../../packages/types
+        version: link:../../packages/ui
+      next:
+        specifier: 15.3.2
+        version: 15.3.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.5
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.5(react@19.2.5)
+    devDependencies:
+      '@fintech/config':
+        specifier: workspace:*
+        version: link:../../packages/config
+      '@tailwindcss/postcss':
+        specifier: ^4.1.6
+        version: 4.2.4
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.17
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      tailwindcss:
+        specifier: ^4.1.6
+        version: 4.2.4
+      typescript:
+        specifier: ^5.7.3
+        version: 5.9.3
+
+  apps/typescript:
+    dependencies:
+      '@fintech/interview-data':
+        specifier: workspace:*
+        version: link:../../packages/interview-data
       '@fintech/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -143,6 +177,15 @@ importers:
       eslint-plugin-react-hooks:
         specifier: ^5.1.0
         version: 5.2.0(eslint@9.39.4(jiti@2.7.0))
+      typescript:
+        specifier: ^5.7.3
+        version: 5.9.3
+
+  packages/interview-data:
+    devDependencies:
+      '@fintech/config':
+        specifier: workspace:*
+        version: link:../config
       typescript:
         specifier: ^5.7.3
         version: 5.9.3
