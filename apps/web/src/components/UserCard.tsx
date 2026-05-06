@@ -36,7 +36,7 @@ export function UserCard({ user }: UserCardProps) {
             <Badge variant={kycBadgeVariant[user.kycStatus]}>{user.kycStatus}</Badge>
           }
         />
-        <Row label="Member since" value={new Date(user.createdAt).toLocaleDateString()} />
+        <Row label="Member since" value={new Date(user.createdAt).toLocaleDateString("en-US")} />
       </div>
     </Card>
   );

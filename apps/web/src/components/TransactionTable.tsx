@@ -21,7 +21,7 @@ const typeVariant: Record<Transaction["type"], BadgeProps["variant"]> = {
 
 function formatAmount(amount: number, currency: string, type: Transaction["type"]) {
   const sign = type === "credit" ? "+" : type === "debit" ? "-" : "";
-  return `${sign}${new Intl.NumberFormat("en-US", { style: "currency", currency }).format(amount)}`;
+  return `${sign}${new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 2 }).format(amount)}`;
 }
 
 export function TransactionTable({ transactions }: TransactionTableProps) {
@@ -57,7 +57,7 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
                 <Badge variant={statusVariant[txn.status]}>{txn.status}</Badge>
               </td>
               <td className="px-4 py-3 text-gray-500">
-                {new Date(txn.createdAt).toLocaleDateString()}
+                {new Date(txn.createdAt).toLocaleDateString("en-US")}
               </td>
             </tr>
           ))}

@@ -83,7 +83,7 @@ export function UserTable({ users }: UserTableProps) {
                   <Badge variant={statusVariant[user.status]}>{user.status}</Badge>
                 </td>
                 <td className="px-4 py-3 text-gray-500">
-                  {new Date(user.createdAt).toLocaleDateString()}
+                  {new Date(user.createdAt).toLocaleDateString("en-US")}
                 </td>
                 <td className="px-4 py-3">
                   <Button variant="ghost" size="sm">
