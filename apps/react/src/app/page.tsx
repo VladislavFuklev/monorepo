@@ -13,23 +13,27 @@ const stats = {
 export default function ReactPage() {
   return (
     <div>
-      {/* Hero */}
       <header className="relative overflow-hidden bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 px-6 py-20 text-white">
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)", backgroundSize: "60px 60px" }}
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
         />
         <div className="relative mx-auto max-w-4xl">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 text-sm backdrop-blur-sm">
-            <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
-            Interview Prep
-          </div>
-          <h1 className="text-5xl font-black tracking-tight">
-            React
-          </h1>
-          <p className="mt-4 max-w-xl text-lg text-white/80">
+          <a
+            href="http://localhost:3003"
+            className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs backdrop-blur-sm hover:bg-white/30 transition-colors"
+          >
+            ← Hub
+          </a>
+          <h1 className="text-5xl font-black tracking-tight">React</h1>
+          <p className="mt-3 max-w-xl text-lg text-white/80">
             Вопросы и ответы для подготовки к собеседованию. От Virtual DOM до батчинга в React 18.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-6 flex flex-wrap gap-4">
             {[
               { label: "Всего вопросов", value: stats.total },
               { label: "Junior", value: stats.junior, color: "text-emerald-300" },
@@ -42,20 +46,15 @@ export default function ReactPage() {
               </div>
             ))}
           </div>
+          <div className="mt-6 flex gap-4 text-sm text-white/60">
+            <a href="http://localhost:3001" className="hover:text-white transition-colors">TypeScript →</a>
+            <a href="http://localhost:3002" className="hover:text-white transition-colors">Monorepo →</a>
+          </div>
         </div>
       </header>
 
-      {/* Navigation hint */}
-      <div className="border-b border-gray-200 bg-white px-6 py-3">
-        <div className="mx-auto flex max-w-4xl items-center gap-6 text-sm text-gray-500">
-          <a href="http://localhost:3001" className="hover:text-blue-600 transition-colors">TypeScript →</a>
-          <a href="http://localhost:3002" className="hover:text-blue-600 transition-colors">Monorepo →</a>
-        </div>
-      </div>
-
-      {/* Content */}
       <main className="mx-auto max-w-4xl px-6 py-10">
-        <QuestionList questions={reactQuestions} accent={ACCENT} />
+        <QuestionList questions={reactQuestions} accent={ACCENT} topic="react" />
       </main>
     </div>
   );

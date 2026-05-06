@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:hub": "turbo run dev --filter=@fintech/app-hub",
     "dev:react": "turbo run dev --filter=@fintech/app-react",
     "dev:typescript": "turbo run dev --filter=@fintech/app-typescript",
     "dev:monorepo": "turbo run dev --filter=@fintech/app-monorepo",
