@@ -39,7 +39,7 @@ export function TopicCard({
       <p className="mt-2 text-sm leading-relaxed text-gray-400">{description}</p>
 
       {/* Stats */}
-      <div className="mt-6 grid grid-cols-4 gap-2 rounded-xl bg-gray-800/60 p-4">
+      <div className="mt-auto grid grid-cols-4 gap-2 rounded-xl bg-gray-800/60 p-4">
         <Stat label="Всего" value={total} color="text-white" />
         <Stat label="Junior" value={junior} color="text-emerald-400" />
         <Stat label="Middle" value={middle} color="text-amber-400" />
