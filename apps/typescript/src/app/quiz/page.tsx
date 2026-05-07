@@ -7,7 +7,7 @@ export default function TypeScriptQuizPage() {
       questions={typescriptQuestions}
       topic="typescript"
       accent="#8b5cf6"
-      hubUrl="http://localhost:3003"
+      hubUrl={process.env.NEXT_PUBLIC_HUB_URL ?? "http://localhost:3003"}
       listUrl="/"
     />
   );

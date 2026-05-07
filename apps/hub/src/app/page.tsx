@@ -7,7 +7,7 @@ const topics = [
   {
     title: "React",
     description: "Virtual DOM, хуки, паттерны, производительность и всё что спрашивают на собеседованиях.",
-    url: "http://localhost:3000",
+    url: process.env.NEXT_PUBLIC_REACT_URL ?? "http://localhost:3000",
     gradient: "bg-gradient-to-br from-sky-500 to-blue-600",
     icon: "⚛️",
     tag: "Frontend",
@@ -16,7 +16,7 @@ const topics = [
   {
     title: "TypeScript",
     description: "Дженерики, utility types, mapped types, conditional types и строгая типизация.",
-    url: "http://localhost:3001",
+    url: process.env.NEXT_PUBLIC_TYPESCRIPT_URL ?? "http://localhost:3001",
     gradient: "bg-gradient-to-br from-violet-500 to-purple-600",
     icon: "𝗧𝗦",
     tag: "Language",
@@ -25,13 +25,13 @@ const topics = [
   {
     title: "Monorepo",
     description: "Turborepo, pnpm workspaces, task graph, caching и архитектурные решения.",
-    url: "http://localhost:3002",
+    url: process.env.NEXT_PUBLIC_MONOREPO_URL ?? "http://localhost:3002",
     gradient: "bg-gradient-to-br from-emerald-500 to-teal-600",
     icon: "📦",
     tag: "Architecture",
     questions: monorepoQuestions,
   },
-] as const;
+];
 
 const techStack = [
   { label: "Turborepo", desc: "Task orchestration + caching" },

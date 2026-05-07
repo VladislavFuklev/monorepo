@@ -7,7 +7,7 @@ export default function ReactQuizPage() {
       questions={reactQuestions}
       topic="react"
       accent="#0ea5e9"
-      hubUrl="http://localhost:3003"
+      hubUrl={process.env.NEXT_PUBLIC_HUB_URL ?? "http://localhost:3003"}
       listUrl="/"
     />
   );

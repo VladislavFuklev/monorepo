@@ -25,7 +25,7 @@ export default function ReactPage() {
         <div className="relative mx-auto max-w-4xl">
           <div className="mb-4 flex items-center gap-2">
             <a
-              href="http://localhost:3003"
+              href={process.env.NEXT_PUBLIC_HUB_URL ?? "http://localhost:3003"}
               className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs backdrop-blur-sm hover:bg-white/30 transition-colors"
             >
               ← Hub
@@ -55,8 +55,8 @@ export default function ReactPage() {
             ))}
           </div>
           <div className="mt-6 flex gap-4 text-sm text-white/60">
-            <a href="http://localhost:3001" className="hover:text-white transition-colors">TypeScript →</a>
-            <a href="http://localhost:3002" className="hover:text-white transition-colors">Monorepo →</a>
+            <a href={process.env.NEXT_PUBLIC_TYPESCRIPT_URL ?? "http://localhost:3001"} className="hover:text-white transition-colors">TypeScript →</a>
+            <a href={process.env.NEXT_PUBLIC_MONOREPO_URL ?? "http://localhost:3002"} className="hover:text-white transition-colors">Monorepo →</a>
           </div>
         </div>
       </header>
