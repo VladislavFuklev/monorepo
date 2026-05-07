@@ -263,6 +263,12 @@ importers:
 
   packages/ui:
     dependencies:
+      '@fintech/hooks':
+        specifier: workspace:*
+        version: link:../hooks
+      '@fintech/interview-data':
+        specifier: workspace:*
+        version: link:../interview-data
       react:
         specifier: ^19.0.0
         version: 19.2.5

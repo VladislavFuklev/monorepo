@@ -9,3 +9,5 @@ export type { CardProps } from "./components/Card";
 
 export { Badge } from "./components/Badge";
 export type { BadgeProps } from "./components/Badge";
+
+export { QuizMode } from "./components/QuizMode";

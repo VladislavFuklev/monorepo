@@ -23,12 +23,20 @@ export default function TypeScriptPage() {
           }}
         />
         <div className="relative mx-auto max-w-4xl">
-          <a
-            href="http://localhost:3003"
-            className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs backdrop-blur-sm hover:bg-white/30 transition-colors"
-          >
-            ← Hub
-          </a>
+          <div className="mb-4 flex items-center gap-2">
+            <a
+              href="http://localhost:3003"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs backdrop-blur-sm hover:bg-white/30 transition-colors"
+            >
+              ← Hub
+            </a>
+            <a
+              href="/quiz"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white/30 px-3 py-1 text-xs font-semibold backdrop-blur-sm hover:bg-white/40 transition-colors"
+            >
+              ⚡ Quiz
+            </a>
+          </div>
           <h1 className="text-5xl font-black tracking-tight">TypeScript</h1>
           <p className="mt-3 max-w-xl text-lg text-white/80">
             От базовых типов до infer, mapped types и satisfies. Всё что спрашивают на собеседованиях.

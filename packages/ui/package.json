@@ -11,6 +11,10 @@
     "lint": "eslint src/",
     "type-check": "tsc --noEmit"
   },
+  "dependencies": {
+    "@fintech/hooks": "workspace:*",
+    "@fintech/interview-data": "workspace:*"
+  },
   "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
