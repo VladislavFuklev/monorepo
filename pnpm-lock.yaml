@@ -269,6 +269,9 @@ importers:
       '@fintech/interview-data':
         specifier: workspace:*
         version: link:../interview-data
+      next:
+        specifier: '>=15.0.0'
+        version: 15.3.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react:
         specifier: ^19.0.0
         version: 19.2.5

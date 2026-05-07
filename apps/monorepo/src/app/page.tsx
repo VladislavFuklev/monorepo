@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { monorepoQuestions } from "@fintech/interview-data";
 import { QuestionList } from "@/components/QuestionList";
 
@@ -29,18 +30,18 @@ export default function MonorepoPage() {
             >
               ← Hub
             </a>
-            <a
+            <Link
               href="/quiz"
               className="inline-flex items-center gap-1.5 rounded-full bg-white/30 px-3 py-1 text-xs font-semibold backdrop-blur-sm hover:bg-white/40 transition-colors"
             >
               ⚡ Quiz
-            </a>
-            <a
+            </Link>
+            <Link
               href="/workspace"
               className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs backdrop-blur-sm hover:bg-white/30 transition-colors"
             >
               🗂️ Workspace
-            </a>
+            </Link>
           </div>
           <h1 className="text-5xl font-black tracking-tight">Monorepo</h1>
           <p className="mt-3 max-w-xl text-lg text-white/80">

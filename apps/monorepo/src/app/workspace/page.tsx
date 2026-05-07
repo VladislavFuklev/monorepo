@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 type Tab = "graph" | "compare" | "concepts";
 
@@ -244,18 +245,18 @@ export default function WorkspacePage() {
         />
         <div className="relative mx-auto max-w-5xl">
           <div className="mb-4 flex items-center gap-2">
-            <a
+            <Link
               href="/"
               className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs backdrop-blur-sm hover:bg-white/30 transition-colors"
             >
               ← Вопросы
-            </a>
-            <a
+            </Link>
+            <Link
               href="/quiz"
               className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs backdrop-blur-sm hover:bg-white/30 transition-colors"
             >
               ⚡ Quiz
-            </a>
+            </Link>
           </div>
           <h1 className="text-5xl font-black tracking-tight">Workspace</h1>
           <p className="mt-3 max-w-xl text-lg text-white/80">

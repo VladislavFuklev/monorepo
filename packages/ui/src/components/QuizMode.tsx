@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import type { Question, Difficulty } from "@fintech/interview-data";
 import { useProgress } from "@fintech/hooks";
 
@@ -91,12 +92,12 @@ export function QuizMode({ questions, topic, accent, hubUrl, listUrl }: QuizMode
     return (
       <div className="min-h-screen bg-gray-50 px-6 py-12">
         <div className="mx-auto max-w-lg">
-          <a
+          <Link
             href={listUrl}
             className="mb-8 inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"
           >
             ← К списку вопросов
-          </a>
+          </Link>
 
           <div
             className="mb-2 inline-flex h-12 w-12 items-center justify-center rounded-xl text-white text-xl font-black"
@@ -247,12 +248,12 @@ export function QuizMode({ questions, topic, accent, hubUrl, listUrl }: QuizMode
             >
               Ещё одна сессия
             </button>
-            <a
+            <Link
               href={listUrl}
               className="w-full rounded-xl border border-gray-200 bg-white py-3 text-center text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
             >
               К списку вопросов
-            </a>
+            </Link>
             <a
               href={hubUrl}
               className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
