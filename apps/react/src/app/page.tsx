@@ -36,6 +36,12 @@ export default function ReactPage() {
             >
               ⚡ Quiz
             </a>
+            <a
+              href="/patterns"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs backdrop-blur-sm hover:bg-white/30 transition-colors"
+            >
+              🧩 Паттерны
+            </a>
           </div>
           <h1 className="text-5xl font-black tracking-tight">React</h1>
           <p className="mt-3 max-w-xl text-lg text-white/80">
