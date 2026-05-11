@@ -60,6 +60,19 @@
       "tag": "Full-stack"
     }
   },
+  "about": {
+    "title": "About",
+    "summary": "Frontend Developer with experience in React ecosystems. Skilled in building modular, scalable applications with a focus on responsive design and user experience. Experienced in both client-facing applications and internal business tools.",
+    "skills": "Tech Stack",
+    "experience": "Experience",
+    "education": "Education",
+    "present": "Present"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Open to new opportunities — feel free to reach out",
+    "location": "Dnipro, Ukraine"
+  },
   "footer": {
     "copy": "Built with Next.js · Turborepo · TypeScript"
   }
