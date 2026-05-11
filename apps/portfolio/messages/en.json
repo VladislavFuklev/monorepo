@@ -13,10 +13,10 @@
     "cta_github": "GitHub"
   },
   "stats": {
-    "apps": "Apps Built",
-    "packages": "Packages",
-    "strict": "TypeScript Strict",
-    "questions": "Interview Q&A"
+    "years": "Years Frontend",
+    "projects": "Projects",
+    "companies": "Companies",
+    "technologies": "Technologies"
   },
   "projects": {
     "title": "Projects",

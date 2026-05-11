@@ -13,10 +13,10 @@
     "cta_github": "GitHub"
   },
   "stats": {
-    "apps": "Застосунки",
-    "packages": "Пакети",
-    "strict": "TypeScript Strict",
-    "questions": "Питань для інтерв'ю"
+    "years": "Роки Frontend",
+    "projects": "Проєкти",
+    "companies": "Компанії",
+    "technologies": "Технологій"
   },
   "projects": {
     "title": "Проєкти",

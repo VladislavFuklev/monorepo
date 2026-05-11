@@ -90,11 +90,10 @@ export function Hero() {
         <div className="animate-fade-in delay-500 mx-auto mb-10 h-14 w-px bg-gradient-to-b from-white/20 to-transparent" />
 
         {/* Stats */}
-        <div className="animate-fade-up delay-500 mx-auto grid max-w-sm grid-cols-4 gap-6">
-          <Stat value="4" label={t("stats.apps")} />
-          <Stat value="6" label={t("stats.packages")} />
-          <Stat value="TS" label={t("stats.strict")} accent />
-          <Stat value="200+" label={t("stats.questions")} />
+        <div className="animate-fade-up delay-500 mx-auto grid max-w-xs grid-cols-3 gap-8">
+          <Stat value="4" label={t("stats.years")} />
+          <Stat value="2" label={t("stats.companies")} />
+          <Stat value="16+" label={t("stats.technologies")} accent />
         </div>
       </div>
     </section>
