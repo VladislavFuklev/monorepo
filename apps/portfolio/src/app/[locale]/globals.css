@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@source "../**/*.{ts,tsx}";
+
+@theme {
+  --animate-fade-up: fade-up 0.7s ease-out forwards;
+  --animate-fade-in: fade-in 0.5s ease-out forwards;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Стартовый state для анимаций с задержкой */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+.animate-fade-up,
+.animate-fade-in {
+  opacity: 0;
+}

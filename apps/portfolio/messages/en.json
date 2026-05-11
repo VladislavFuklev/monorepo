@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Open to work",
+    "greeting": "Hello, I'm",
+    "role": "Frontend Engineer",
+    "description": "I build performant, scalable web applications with React and TypeScript. Passionate about clean architecture, monorepos, and developer experience.",
+    "cta_projects": "View Projects",
+    "cta_github": "GitHub"
+  },
+  "stats": {
+    "apps": "Apps Built",
+    "packages": "Packages",
+    "strict": "TypeScript Strict",
+    "questions": "Interview Q&A"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "A collection of apps built in a production-grade Turborepo monorepo",
+    "live": "Live",
+    "demo": "Demo",
+    "source": "Source",
+    "hub": {
+      "title": "Interview Prep Hub",
+      "description": "Central dashboard for interview preparation. Connects React, TypeScript, and Monorepo prep apps through a shared component library and workspace packages.",
+      "tag": "Featured"
+    },
+    "react": {
+      "title": "React Interview Prep",
+      "description": "200+ curated questions on Virtual DOM, hooks, patterns, and performance. Junior through Senior difficulty levels.",
+      "tag": "Frontend"
+    },
+    "typescript": {
+      "title": "TypeScript Mastery",
+      "description": "Interactive cheatsheet covering 14 utility types, generics, mapped types, and conditional types with real-world examples.",
+      "tag": "Language"
+    },
+    "monorepo": {
+      "title": "Monorepo Architecture",
+      "description": "Deep-dive into Turborepo internals — interactive dependency graph, task caching, and pnpm workspace structure.",
+      "tag": "Architecture"
+    },
+    "crypto": {
+      "title": "Crypto Live (Binance WS)",
+      "description": "Single-page Next.js app for real-time cryptocurrency monitoring. Live data via WebSocket (Binance), REST API for exchange rates and weather.",
+      "tag": "Real-time"
+    },
+    "weather": {
+      "title": "Weather Widget",
+      "description": "Weather dashboard with authentication, city selection, and metrics. City search via Open-Meteo Geocoding — switches current city and adds it to favourites. Light/dark theme toggle.",
+      "tag": "Dashboard"
+    },
+    "finance": {
+      "title": "Finance Tracker",
+      "description": "Minimalist personal finance web app focused on transactions and analytics. Track income/expenses, auto-calculates balance and savings rate for the current month. Full CRUD with categories, advanced filtering (type, category, date range, search), and responsive UI with mobile menu.",
+      "tag": "Full-stack"
+    }
+  },
+  "footer": {
+    "copy": "Built with Next.js · Turborepo · TypeScript"
+  }
+}

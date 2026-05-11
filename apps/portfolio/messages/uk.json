@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "projects": "Проєкти",
+    "about": "Про мене",
+    "contact": "Контакти"
+  },
+  "hero": {
+    "badge": "Відкритий до роботи",
+    "greeting": "Привіт, я",
+    "role": "Фронтенд-розробник",
+    "description": "Розробляю продуктивні та масштабовані вебзастосунки на React і TypeScript. Захоплений чистою архітектурою, монорепо та developer experience.",
+    "cta_projects": "Переглянути проєкти",
+    "cta_github": "GitHub"
+  },
+  "stats": {
+    "apps": "Застосунки",
+    "packages": "Пакети",
+    "strict": "TypeScript Strict",
+    "questions": "Питань для інтерв'ю"
+  },
+  "projects": {
+    "title": "Проєкти",
+    "subtitle": "Колекція застосунків у монорепо виробничого рівня на Turborepo",
+    "live": "Живий",
+    "demo": "Демо",
+    "source": "Джерело",
+    "hub": {
+      "title": "Interview Prep Hub",
+      "description": "Центральний дашборд для підготовки до співбесід. Об'єднує застосунки React, TypeScript та Monorepo через спільну бібліотеку компонентів.",
+      "tag": "Головний"
+    },
+    "react": {
+      "title": "React Interview Prep",
+      "description": "200+ питань з Virtual DOM, хуками, патернами та оптимізацією. Рівні складності від Junior до Senior.",
+      "tag": "Фронтенд"
+    },
+    "typescript": {
+      "title": "TypeScript Mastery",
+      "description": "Інтерактивна шпаргалка з 14 utility types, дженеріками, mapped types та conditional types з реальними прикладами.",
+      "tag": "Мова"
+    },
+    "monorepo": {
+      "title": "Monorepo Architecture",
+      "description": "Поглиблене вивчення Turborepo — інтерактивний граф залежностей, кешування задач та структура pnpm workspace.",
+      "tag": "Архітектура"
+    },
+    "crypto": {
+      "title": "Крипто Live (Binance WS)",
+      "description": "Односторінковий застосунок на Next.js для моніторингу курсів криптовалют у реальному часі. Live-дані надходять через WebSocket (Binance), REST API використано для отримання курсу валют та погоди.",
+      "tag": "Real-time"
+    },
+    "weather": {
+      "title": "Віджет погоди",
+      "description": "Дашборд погоди з авторизацією, вибором міста та метриками. Пошук міст (Open-Meteo Geocoding): вибір зі списку — перемикає поточне місто та додає його до вибраного. Зміна теми (світла/темна).",
+      "tag": "Дашборд"
+    },
+    "finance": {
+      "title": "Фінансовий трекер",
+      "description": "Мінімалістичний веб-додаток для управління особистими фінансами з акцентом на транзакції та аналітику. Відстеження доходів/витрат, автоматичний розрахунок балансу і коефіцієнта заощаджень. Повний CRUD з категоріями, розширена фільтрація та адаптивний UI з мобільним меню.",
+      "tag": "Full-stack"
+    }
+  },
+  "footer": {
+    "copy": "Зроблено з Next.js · Turborepo · TypeScript"
+  }
+}
