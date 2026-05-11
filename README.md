@@ -1,19 +1,36 @@
-# Fintech Monorepo
+# Frontend Monorepo
 
-Production-grade monorepo for a fintech dashboard built with [Turborepo](https://turbo.build), Next.js, TypeScript, and pnpm.
+Production-grade monorepo built with [Turborepo](https://turbo.build), Next.js 15, TypeScript, and pnpm workspaces.
+
+Contains a **portfolio site** and a suite of **interview preparation apps** — all sharing a common component library, hooks, config, and data packages.
+
+## Live
+
+| App | URL |
+| --- | --- |
+| Portfolio | _coming soon_ |
+| Interview Prep Hub | https://monorepo-hub-phi.vercel.app |
+| React Interview Prep | https://monorepo-react-orcin.vercel.app |
+| TypeScript Mastery | https://monorepo-typescript.vercel.app |
+| Monorepo Architecture | https://monorepo-monorepo.vercel.app |
 
 ## Structure
 
 ```
 apps/
-  web/        → Customer-facing dashboard   (port 3000)
-  admin/      → Internal admin panel        (port 3001)
+  portfolio/    → Personal portfolio with i18n (EN/UK)   (port 3004)
+  hub/          → Interview Prep central dashboard        (port 3003)
+  react/        → React interview questions + quiz        (port 3000)
+  typescript/   → TypeScript cheatsheet + quiz            (port 3001)
+  monorepo/     → Monorepo architecture deep-dive         (port 3002)
 
 packages/
-  ui/         → Shared React component library (Button, Input, Card, Badge)
-  api/        → Shared API client (axios + typed methods)
-  types/      → Shared TypeScript interfaces (User, Transaction, …)
-  config/     → Shared tsconfig & ESLint presets
+  ui/             → Shared React component library (Button, Input, Card, Badge, QuizMode)
+  hooks/          → Shared React hooks
+  interview-data/ → Interview questions data (React, TypeScript, Monorepo)
+  api/            → Shared API client (axios + typed methods)
+  types/          → Shared TypeScript interfaces
+  config/         → Shared tsconfig & ESLint presets
 ```
 
 ## Prerequisites
@@ -23,96 +40,85 @@ packages/
 
 ```bash
 npm install -g pnpm@9
+pnpm install
 ```
 
-## Getting started
+## Dev
 
 ```bash
-# Install all dependencies
-pnpm install
-
-# Start all apps in development mode
-pnpm dev
-
-# Start only the web dashboard
-pnpm dev:web
-
-# Start only the admin panel
-pnpm dev:admin
+pnpm dev                 # all apps in parallel
+pnpm dev:portfolio       # portfolio only      → localhost:3004
+pnpm dev:hub             # hub only            → localhost:3003
+pnpm dev:react           # react app only      → localhost:3000
+pnpm dev:typescript      # typescript app only → localhost:3001
+pnpm dev:monorepo        # monorepo app only   → localhost:3002
 ```
 
-## Available scripts
+## Scripts
 
-| Command            | Description                              |
-| ------------------ | ---------------------------------------- |
-| `pnpm dev`         | Start all apps in watch mode             |
-| `pnpm dev:web`     | Start only `apps/web` (port 3000)        |
-| `pnpm dev:admin`   | Start only `apps/admin` (port 3001)      |
-| `pnpm build`       | Build all apps and packages              |
-| `pnpm lint`        | Run ESLint across the monorepo           |
-| `pnpm type-check`  | Run `tsc --noEmit` across the monorepo   |
-| `pnpm clean`       | Remove all build artifacts               |
+| Command           | Description                            |
+| ----------------- | -------------------------------------- |
+| `pnpm dev`        | Start all apps in watch mode           |
+| `pnpm build`      | Build all apps and packages            |
+| `pnpm type-check` | Run `tsc --noEmit` across the monorepo |
+| `pnpm clean`      | Remove all build artifacts             |
 
 ## Environment variables
 
-Copy `.env.example` to `.env.local` in each app directory:
+Each app reads its sibling URLs from env vars (with Vercel URLs as fallbacks):
 
-```bash
-cp .env.example apps/web/.env.local
-cp .env.example apps/admin/.env.local
-```
-
-| Variable               | Default                                    | Description        |
-| ---------------------- | ------------------------------------------ | ------------------ |
-| `NEXT_PUBLIC_API_URL`  | `https://api.fintech.example.com/v1`       | Backend API root   |
+| Variable                        | Used by    | Default fallback                              |
+| ------------------------------- | ---------- | --------------------------------------------- |
+| `NEXT_PUBLIC_HUB_URL`           | all apps   | `https://monorepo-hub-phi.vercel.app`         |
+| `NEXT_PUBLIC_REACT_URL`         | hub, portfolio | `https://monorepo-react-orcin.vercel.app` |
+| `NEXT_PUBLIC_TYPESCRIPT_URL`    | hub, portfolio | `https://monorepo-typescript.vercel.app`  |
+| `NEXT_PUBLIC_MONOREPO_URL`      | hub, portfolio | `https://monorepo-monorepo.vercel.app`    |
 
 ## Packages
 
 ### `@fintech/ui`
 
-Headless, Tailwind-styled React components.
+Shared Tailwind-styled React components used across all apps.
 
 ```tsx
-import { Button, Input, Card, Badge } from "@fintech/ui";
+import { Button, Input, Card, Badge, QuizMode } from "@fintech/ui";
 ```
 
-### `@fintech/api`
+### `@fintech/interview-data`
 
-Typed API methods powered by axios.
+Typed interview questions for React, TypeScript, and Monorepo topics.
 
 ```ts
-import { getUser, getUsers } from "@fintech/api";
-
-const user = await getUser("usr_01");
-const { data, total } = await getUsers({ page: 1, limit: 20 });
+import { reactQuestions, typescriptQuestions, monorepoQuestions } from "@fintech/interview-data";
+// each question: { id, question, answer, difficulty: "junior" | "middle" | "senior" }
 ```
 
-### `@fintech/types`
+### `@fintech/hooks`
 
-Shared TypeScript interfaces.
-
-```ts
-import type { User, Transaction, ApiResponse } from "@fintech/types";
-```
+Shared React hooks (e.g. `useLocalStorage`, `useQuiz`).
 
 ### `@fintech/config`
 
 Extend tsconfig and ESLint in any workspace package:
 
 ```json
-// tsconfig.json
 { "extends": "@fintech/config/tsconfig/nextjs" }
 ```
 
-```js
-// eslint.config.js
-import nextConfig from "@fintech/config/eslint/nextjs";
-export default nextConfig;
+## i18n
+
+The portfolio app (`apps/portfolio`) uses [next-intl](https://next-intl.dev) with URL-based routing:
+
 ```
+/en  → English
+/uk  → Ukrainian
+```
+
+Language is auto-detected from the browser and stored in the URL. The `EN | UK` toggle in the navbar switches locale without a full page reload.
 
 ## Turborepo caching
 
-Remote caching is supported out of the box. Authenticate with:
+Remote caching speeds up CI builds. Authenticate once:
 
 ```bash
 npx turbo login

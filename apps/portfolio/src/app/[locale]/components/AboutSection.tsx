@@ -9,7 +9,7 @@ const SKILLS = [
 
 const EXPERIENCE = [
   {
-    company: "Aventus Group",
+    company: "Aventus IT",
     role: "Frontend Software Engineer",
     from: "Apr 2024",
     to: null,
@@ -45,7 +45,7 @@ const EXPERIENCE = [
 ] as const;
 
 const EDUCATION = [
-  { name: "Aventus Group / Udemy", detail: "Complete JavaScript + React" },
+  { name: "Udemy", detail: "Complete JavaScript + React" },
   { name: "SkillUp", detail: "Frontend Development" },
   { name: "National Mining University", detail: "Industrial Management · 2018" },
 ] as const;
