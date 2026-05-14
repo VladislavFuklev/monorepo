@@ -82,6 +82,7 @@ export default function MonorepoPage() {
             <a href={process.env.NEXT_PUBLIC_REACT_URL ?? "http://localhost:3000"} className="transition-colors hover:text-white/60">← React</a>
             <a href={process.env.NEXT_PUBLIC_TYPESCRIPT_URL ?? "http://localhost:3001"} className="transition-colors hover:text-white/60">← TypeScript</a>
             <a href={process.env.NEXT_PUBLIC_NEXTJS_URL ?? "http://localhost:3005"} className="transition-colors hover:text-white/60">Next.js →</a>
+            <a href={process.env.NEXT_PUBLIC_JAVASCRIPT_URL ?? "http://localhost:3006"} className="transition-colors hover:text-white/60">JavaScript →</a>
           </div>
         </div>
       </header>

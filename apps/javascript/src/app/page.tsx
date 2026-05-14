@@ -1,26 +1,25 @@
 import Link from "next/link";
-import { nextjsQuestions } from "@fintech/interview-data";
+import { javascriptQuestions } from "@fintech/interview-data";
 import { QuestionList } from "@/components/QuestionList";
 
-const ACCENT = "#6366f1";
+const ACCENT = "#f59e0b";
 
 const stats = {
-  total: nextjsQuestions.length,
-  junior: nextjsQuestions.filter((q) => q.difficulty === "junior").length,
-  middle: nextjsQuestions.filter((q) => q.difficulty === "middle").length,
-  senior: nextjsQuestions.filter((q) => q.difficulty === "senior").length,
+  total: javascriptQuestions.length,
+  junior: javascriptQuestions.filter((q) => q.difficulty === "junior").length,
+  middle: javascriptQuestions.filter((q) => q.difficulty === "middle").length,
+  senior: javascriptQuestions.filter((q) => q.difficulty === "senior").length,
 };
 
-export default function NextJsPage() {
+export default function JavaScriptPage() {
   return (
     <div>
       <header className="relative overflow-hidden bg-[#050508] px-6 py-20 text-white">
         {/* Ambient glow */}
         <div
           className="pointer-events-none absolute -top-32 right-0 h-[500px] w-[500px] rounded-full blur-[130px]"
-          style={{ background: `radial-gradient(circle, ${ACCENT}25, transparent 70%)` }}
+          style={{ background: `radial-gradient(circle, ${ACCENT}22, transparent 70%)` }}
         />
-        {/* Dot grid */}
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.03]"
           style={{
@@ -45,30 +44,24 @@ export default function NextJsPage() {
             >
               ⚡ Quiz
             </Link>
-            <Link
-              href="/cheatsheet"
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60 backdrop-blur-sm transition-colors hover:bg-white/10 hover:text-white/80"
-            >
-              📋 Шпаргалка
-            </Link>
           </div>
 
-          {/* Heading */}
+          {/* Title */}
           <div className="mb-3 flex items-center gap-4">
             <div
-              className="flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-black"
+              className="flex h-14 w-14 items-center justify-center rounded-2xl text-xl font-black"
               style={{
                 backgroundColor: `${ACCENT}18`,
                 border: `1px solid ${ACCENT}35`,
+                color: ACCENT,
               }}
             >
-              ▲
+              JS
             </div>
-            <h1 className="text-5xl font-black tracking-tight">Next.js</h1>
+            <h1 className="text-5xl font-black tracking-tight">JavaScript</h1>
           </div>
           <p className="mt-3 max-w-xl text-lg text-white/50">
-            App Router, Server Components, Server Actions, кеширование, Streaming и оптимизация
-            производительности.
+            Замыкания, Event Loop, Promise, прототипы, генераторы и Proxy. Всё что спрашивают на собеседованиях.
           </p>
 
           {/* Stats */}
@@ -90,27 +83,24 @@ export default function NextJsPage() {
           <div className="mt-5 flex gap-4 text-sm text-white/30">
             <a href={process.env.NEXT_PUBLIC_REACT_URL ?? "http://localhost:3000"} className="transition-colors hover:text-white/60">React →</a>
             <a href={process.env.NEXT_PUBLIC_TYPESCRIPT_URL ?? "http://localhost:3001"} className="transition-colors hover:text-white/60">TypeScript →</a>
+            <a href={process.env.NEXT_PUBLIC_NEXTJS_URL ?? "http://localhost:3005"} className="transition-colors hover:text-white/60">Next.js →</a>
             <a href={process.env.NEXT_PUBLIC_MONOREPO_URL ?? "http://localhost:3002"} className="transition-colors hover:text-white/60">Monorepo →</a>
-            <a href={process.env.NEXT_PUBLIC_JAVASCRIPT_URL ?? "http://localhost:3006"} className="transition-colors hover:text-white/60">JavaScript →</a>
           </div>
 
-          {/* Version badges */}
-          <div className="mt-4 flex items-center gap-3 text-sm text-white/50">
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-0.5 text-xs">
-              Next.js 15
+          {/* Version badge */}
+          <div className="mt-4 flex items-center gap-3">
+            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-0.5 text-xs text-white/40">
+              ES2024
             </span>
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-0.5 text-xs">
-              App Router
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-0.5 text-xs">
-              React 19
+            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-0.5 text-xs text-white/40">
+              V8 Engine
             </span>
           </div>
         </div>
       </header>
 
       <main className="mx-auto max-w-4xl px-6 py-10">
-        <QuestionList questions={nextjsQuestions} accent={ACCENT} topic="nextjs" />
+        <QuestionList questions={javascriptQuestions} accent={ACCENT} topic="javascript" />
       </main>
     </div>
   );

@@ -1,7 +1,7 @@
-import { reactQuestions, typescriptQuestions, monorepoQuestions, nextjsQuestions } from "@fintech/interview-data";
+import { reactQuestions, typescriptQuestions, monorepoQuestions, nextjsQuestions, javascriptQuestions } from "@fintech/interview-data";
 import { TopicCard } from "@/components/TopicCard";
 
-const total = reactQuestions.length + typescriptQuestions.length + monorepoQuestions.length + nextjsQuestions.length;
+const total = reactQuestions.length + typescriptQuestions.length + monorepoQuestions.length + nextjsQuestions.length + javascriptQuestions.length;
 
 const topics = [
   {
@@ -21,6 +21,15 @@ const topics = [
     icon: "▲",
     tag: "Framework",
     questions: nextjsQuestions,
+  },
+  {
+    title: "JavaScript",
+    description: "Замыкания, Event Loop, прототипы, генераторы и Proxy — ядро языка.",
+    url: process.env.NEXT_PUBLIC_JAVASCRIPT_URL ?? "http://localhost:3006",
+    accentColor: "#f59e0b",
+    icon: "JS",
+    tag: "Language",
+    questions: javascriptQuestions,
   },
   {
     title: "TypeScript",
@@ -96,7 +105,7 @@ export default function HubPage() {
           <div className="mt-14 flex flex-wrap items-center justify-center gap-10">
             {[
               { value: total, label: "вопросов" },
-              { value: 4, label: "темы" },
+              { value: 5, label: "темы" },
               { value: 4, label: "приложения" },
               { value: 5, label: "пакетов" },
             ].map(({ value, label }) => (

@@ -7,7 +7,8 @@ const HUB_URL    = process.env.NEXT_PUBLIC_HUB_URL        ?? "https://monorepo-h
 const REACT_URL  = process.env.NEXT_PUBLIC_REACT_URL      ?? "https://monorepo-react-orcin.vercel.app";
 const TS_URL     = process.env.NEXT_PUBLIC_TYPESCRIPT_URL ?? "https://monorepo-typescript.vercel.app";
 const MONO_URL   = process.env.NEXT_PUBLIC_MONOREPO_URL   ?? "https://monorepo-monorepo.vercel.app";
-const NEXTJS_URL = process.env.NEXT_PUBLIC_NEXTJS_URL     ?? "https://monorepo-nextjs-psi.vercel.app";
+const NEXTJS_URL      = process.env.NEXT_PUBLIC_NEXTJS_URL      ?? "https://monorepo-nextjs-psi.vercel.app";
+const JAVASCRIPT_URL  = process.env.NEXT_PUBLIC_JAVASCRIPT_URL  ?? "https://monorepo-javascript.vercel.app";
 const CRYPTO_URL  = "https://nextapp-mu-gilt.vercel.app/dashboard";
 const WEATHER_URL = "https://weather-widget-six-smoky.vercel.app/signin";
 const FINANCE_URL = "https://dashboard-omega-sandy-89.vercel.app/";
@@ -134,6 +135,22 @@ export function ProjectsGrid() {
               { label: "Dependency Graph" },
             ]}
             demoUrl={MONO_URL}
+            sourceUrl={`${GITHUB}/monorepo`}
+            {...shared}
+          />
+          <ProjectCard
+            title={t("javascript.title")}
+            description={t("javascript.description")}
+            tag={t("javascript.tag")}
+            icon="JS"
+            gradient="from-amber-500 to-yellow-600"
+            gradientBar="from-amber-400 to-yellow-500"
+            techs={[
+              { label: "JavaScript" },
+              { label: "ES2024" },
+              { label: "Next.js" },
+            ]}
+            demoUrl={JAVASCRIPT_URL}
             sourceUrl={`${GITHUB}/monorepo`}
             {...shared}
           />

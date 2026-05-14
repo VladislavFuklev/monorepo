@@ -49,6 +49,11 @@
       "description": "30+ questions covering App Router, Server Components, Server Actions, caching strategies, Streaming, and performance optimization.",
       "tag": "Framework"
     },
+    "javascript": {
+      "title": "JavaScript Interview Prep",
+      "description": "25 curated questions on closures, Event Loop, prototypes, generators, Proxy and more. Junior through Senior difficulty with code examples.",
+      "tag": "Language"
+    },
     "crypto": {
       "title": "Crypto Live (Binance WS)",
       "description": "Single-page Next.js app for real-time cryptocurrency monitoring. Live data via WebSocket (Binance), REST API for exchange rates and weather.",

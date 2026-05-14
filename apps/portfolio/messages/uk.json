@@ -49,6 +49,11 @@
       "description": "30+ питань з App Router, Server Components, Server Actions, стратегій кешування, Streaming та оптимізації продуктивності.",
       "tag": "Фреймворк"
     },
+    "javascript": {
+      "title": "JavaScript Interview Prep",
+      "description": "25 запитань про замикання, Event Loop, прототипи, генератори та Proxy. Рівні від Junior до Senior з прикладами коду.",
+      "tag": "Мова"
+    },
     "crypto": {
       "title": "Крипто Live (Binance WS)",
       "description": "Односторінковий застосунок на Next.js для моніторингу курсів криптовалют у реальному часі. Live-дані надходять через WebSocket (Binance), REST API використано для отримання курсу валют та погоди.",
