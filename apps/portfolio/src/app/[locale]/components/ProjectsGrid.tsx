@@ -23,7 +23,7 @@ export function ProjectsGrid() {
   };
 
   return (
-    <section id="projects" className="relative px-6 pb-32 pt-8">
+    <section id="projects" className="relative overflow-hidden px-6 pb-32 pt-8">
       {/* Atmosphere blob */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/8 blur-[160px]" />
 
@@ -117,7 +117,7 @@ export function ProjectsGrid() {
           />
         </div>
 
-        <div className="mb-16 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="mb-16 grid grid-cols-1 gap-5 md:grid-cols-4">
           {/* Monorepo — featured, 2 cols */}
           <ProjectCard
             isFeatured
@@ -139,6 +139,7 @@ export function ProjectsGrid() {
             {...shared}
           />
           <ProjectCard
+            isFeatured
             title={t("javascript.title")}
             description={t("javascript.description")}
             tag={t("javascript.tag")}

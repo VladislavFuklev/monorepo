@@ -54,7 +54,7 @@ export function AboutSection() {
   const t = useTranslations("about");
 
   return (
-    <section id="about" className="relative border-t border-white/5 px-6 py-24">
+    <section id="about" className="relative overflow-hidden border-t border-white/5 px-6 py-24">
       {/* Subtle blob */}
       <div className="pointer-events-none absolute right-0 top-0 h-[400px] w-[400px] rounded-full bg-sky-600/8 blur-[120px]" />
 
