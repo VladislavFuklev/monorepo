@@ -6,36 +6,36 @@ const total = reactQuestions.length + typescriptQuestions.length + monorepoQuest
 const topics = [
   {
     title: "React",
-    description: "Virtual DOM, хуки, паттерны, производительность и всё что спрашивают на собеседованиях.",
+    description: "Virtual DOM, хуки, паттерны, производительность — всё для собеса.",
     url: process.env.NEXT_PUBLIC_REACT_URL ?? "http://localhost:3000",
-    gradient: "bg-gradient-to-br from-sky-500 to-blue-600",
-    icon: "⚛️",
+    accentColor: "#0ea5e9",
+    icon: "⚛",
     tag: "Frontend",
     questions: reactQuestions,
   },
   {
     title: "Next.js",
-    description: "App Router, Server Components, Server Actions, кеширование, Streaming и оптимизация.",
+    description: "App Router, Server Components, Server Actions, кеширование и Streaming.",
     url: process.env.NEXT_PUBLIC_NEXTJS_URL ?? "http://localhost:3005",
-    gradient: "bg-gradient-to-br from-slate-600 to-indigo-700",
+    accentColor: "#6366f1",
     icon: "▲",
     tag: "Framework",
     questions: nextjsQuestions,
   },
   {
     title: "TypeScript",
-    description: "Дженерики, utility types, mapped types, conditional types и строгая типизация.",
+    description: "Дженерики, utility types, mapped types и conditional types.",
     url: process.env.NEXT_PUBLIC_TYPESCRIPT_URL ?? "http://localhost:3001",
-    gradient: "bg-gradient-to-br from-violet-500 to-purple-600",
+    accentColor: "#8b5cf6",
     icon: "𝗧𝗦",
     tag: "Language",
     questions: typescriptQuestions,
   },
   {
     title: "Monorepo",
-    description: "Turborepo, pnpm workspaces, task graph, caching и архитектурные решения.",
+    description: "Turborepo, pnpm workspaces, task graph и архитектурные решения.",
     url: process.env.NEXT_PUBLIC_MONOREPO_URL ?? "http://localhost:3002",
-    gradient: "bg-gradient-to-br from-emerald-500 to-teal-600",
+    accentColor: "#10b981",
     icon: "📦",
     tag: "Architecture",
     questions: monorepoQuestions,
@@ -55,48 +55,54 @@ const techStack = [
 
 export default function HubPage() {
   return (
-    <div className="min-h-screen">
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Background ambient orbs */}
+      <div className="pointer-events-none absolute -top-64 left-[-15%] h-[700px] w-[700px] rounded-full bg-sky-600/10 blur-[160px]" />
+      <div className="pointer-events-none absolute -top-40 right-[-10%] h-[600px] w-[600px] rounded-full bg-violet-600/10 blur-[140px]" />
+      <div className="pointer-events-none absolute bottom-[20%] left-[35%] h-[500px] w-[500px] rounded-full bg-emerald-600/8 blur-[160px]" />
+
       {/* Hero */}
-      <section className="relative overflow-hidden px-6 pb-16 pt-24">
-        {/* Background grid */}
+      <section className="relative px-6 pb-20 pt-28">
+        {/* Subtle dot grid */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="pointer-events-none absolute inset-0 opacity-[0.025]"
           style={{
-            backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
+            backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
           }}
         />
-        {/* Glow */}
-        <div className="absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-600/20 blur-3xl" />
 
-        <div className="relative mx-auto max-w-4xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-gray-400 backdrop-blur-sm">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            Monorepo · 4 приложения · 1 репозиторий
+        <div className="relative mx-auto max-w-5xl text-center">
+          {/* Status badge */}
+          <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-white/50 backdrop-blur-sm">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+            4 приложения · 1 монорепо · production ready
           </div>
 
-          <h1 className="text-6xl font-black tracking-tight text-white">
+          {/* Big title */}
+          <h1 className="text-7xl font-black tracking-tight text-white leading-none md:text-8xl">
             Interview{" "}
             <span className="bg-gradient-to-r from-sky-400 via-violet-400 to-emerald-400 bg-clip-text text-transparent">
-              Prep
+              Hub
             </span>
           </h1>
 
-          <p className="mx-auto mt-5 max-w-lg text-lg text-gray-400">
-            Подготовься к собеседованию по React, TypeScript и Monorepo. Всё в одном месте, с прогрессом.
+          <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-white/40">
+            React, Next.js, TypeScript, Monorepo — полная подготовка к собеседованию
+            в одном месте, с прогрессом.
           </p>
 
-          {/* Global stats */}
-          <div className="mt-10 flex justify-center gap-8">
+          {/* Stats */}
+          <div className="mt-14 flex flex-wrap items-center justify-center gap-10">
             {[
-              { label: "Вопросов", value: total },
-              { label: "Тем", value: 3 },
-              { label: "Приложений", value: 4 },
-              { label: "Пакетов", value: 5 },
-            ].map(({ label, value }) => (
+              { value: total, label: "вопросов" },
+              { value: 4, label: "темы" },
+              { value: 4, label: "приложения" },
+              { value: 5, label: "пакетов" },
+            ].map(({ value, label }) => (
               <div key={label} className="text-center">
-                <p className="text-4xl font-black text-white">{value}</p>
-                <p className="mt-1 text-sm text-gray-500">{label}</p>
+                <p className="text-5xl font-black text-white">{value}</p>
+                <p className="mt-1.5 text-sm text-white/30">{label}</p>
               </div>
             ))}
           </div>
@@ -104,9 +110,9 @@ export default function HubPage() {
       </section>
 
       {/* Topic cards */}
-      <section className="px-6 pb-20">
-        <div className="mx-auto max-w-4xl">
-          <div className="grid gap-5 md:grid-cols-3">
+      <section className="relative px-6 pb-24">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid gap-4 md:grid-cols-2">
             {topics.map((t) => {
               const q = t.questions as typeof reactQuestions;
               return (
@@ -115,7 +121,7 @@ export default function HubPage() {
                   title={t.title}
                   description={t.description}
                   url={t.url}
-                  gradient={t.gradient}
+                  accentColor={t.accentColor}
                   icon={t.icon}
                   tag={t.tag}
                   total={q.length}
@@ -130,19 +136,19 @@ export default function HubPage() {
       </section>
 
       {/* Tech stack */}
-      <section className="border-t border-white/5 px-6 py-16">
-        <div className="mx-auto max-w-4xl">
-          <p className="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-gray-600">
+      <section className="relative border-t border-white/5 px-6 py-16">
+        <div className="mx-auto max-w-5xl">
+          <p className="mb-8 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white/20">
             Стек монорепо
           </p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {techStack.map(({ label, desc }) => (
               <div
                 key={label}
-                className="rounded-xl border border-white/5 bg-gray-900 p-4 hover:border-white/10 transition-colors"
+                className="rounded-xl border border-white/6 bg-white/[0.03] p-4 transition-colors hover:border-white/10 hover:bg-white/[0.05]"
               >
-                <p className="text-sm font-semibold text-white">{label}</p>
-                <p className="mt-0.5 text-xs text-gray-500">{desc}</p>
+                <p className="text-sm font-semibold text-white/80">{label}</p>
+                <p className="mt-0.5 text-xs text-white/30">{desc}</p>
               </div>
             ))}
           </div>
@@ -150,7 +156,7 @@ export default function HubPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 px-6 py-8 text-center text-xs text-gray-600">
+      <footer className="border-t border-white/5 px-6 py-8 text-center text-xs text-white/20">
         Built with Turborepo · pnpm workspaces · Next.js 15 · TypeScript strict
       </footer>
     </div>

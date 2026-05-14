@@ -313,10 +313,10 @@ const routes = [
   },
 ];
 
-const categoryMeta: Record<Exclude<Category, "all">, { label: string; color: string; bg: string }> = {
-  composition: { label: "Composition", color: "text-sky-700", bg: "bg-sky-100" },
-  state:        { label: "State",       color: "text-violet-700", bg: "bg-violet-100" },
-  performance:  { label: "Performance", color: "text-amber-700", bg: "bg-amber-100" },
+const categoryMeta: Record<Exclude<Category, "all">, { label: string; color: string; bg: string; border: string }> = {
+  composition: { label: "Composition", color: "text-sky-400",    bg: "bg-sky-500/15",    border: "border-sky-500/25" },
+  state:       { label: "State",       color: "text-violet-400", bg: "bg-violet-500/15", border: "border-violet-500/25" },
+  performance: { label: "Performance", color: "text-amber-400",  bg: "bg-amber-500/15",  border: "border-amber-500/25" },
 };
 
 const ACCENT = "#0ea5e9";
@@ -329,35 +329,46 @@ export default function PatternsPage() {
 
   return (
     <div>
-      <header className="relative overflow-hidden bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 px-6 py-20 text-white">
+      <header className="relative overflow-hidden bg-[#050508] px-6 py-20 text-white">
         <div
-          className="absolute inset-0 opacity-10"
+          className="pointer-events-none absolute -top-32 right-0 h-[500px] w-[500px] rounded-full blur-[130px]"
+          style={{ background: "radial-gradient(circle, #0ea5e922, transparent 70%)" }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
+            backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
           }}
         />
         <div className="relative mx-auto max-w-4xl">
-          <div className="mb-4 flex items-center gap-2">
+          <div className="mb-6 flex items-center gap-2">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs backdrop-blur-sm hover:bg-white/30 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60 backdrop-blur-sm transition-colors hover:bg-white/10 hover:text-white/80"
             >
               ← Вопросы
             </Link>
             <Link
               href="/quiz"
-              className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs backdrop-blur-sm hover:bg-white/30 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60 backdrop-blur-sm transition-colors hover:bg-white/10 hover:text-white/80"
             >
               ⚡ Quiz
             </Link>
           </div>
-          <h1 className="text-5xl font-black tracking-tight">Паттерны</h1>
-          <p className="mt-3 max-w-xl text-lg text-white/80">
+          <div className="mb-3 flex items-center gap-4">
+            <div
+              className="flex h-14 w-14 items-center justify-center rounded-2xl text-2xl"
+              style={{ backgroundColor: `${ACCENT}18`, border: `1px solid ${ACCENT}35` }}
+            >
+              🧩
+            </div>
+            <h1 className="text-5xl font-black tracking-tight">Паттерны</h1>
+          </div>
+          <p className="mt-3 max-w-xl text-lg text-white/50">
             7 ключевых React-паттернов с примерами кода. Знай когда применять, а когда нет.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-2">
             {(["all", "composition", "state", "performance"] as Category[]).map((c) => (
               <button
                 key={c}
@@ -365,12 +376,12 @@ export default function PatternsPage() {
                 className={[
                   "rounded-full px-4 py-1.5 text-sm font-semibold transition-all",
                   category === c
-                    ? "bg-white text-blue-700 shadow"
-                    : "bg-white/20 text-white hover:bg-white/30",
+                    ? "bg-white text-slate-900 shadow"
+                    : "border border-white/10 bg-white/5 text-white/50 hover:bg-white/10 hover:text-white/70",
                 ].join(" ")}
               >
                 {c === "all" ? "Все" : categoryMeta[c].label}
-                <span className="ml-1.5 opacity-70">
+                <span className="ml-1.5 opacity-60">
                   {c === "all" ? patterns.length : patterns.filter((p) => p.category === c).length}
                 </span>
               </button>
@@ -380,7 +391,7 @@ export default function PatternsPage() {
       </header>
 
       <main className="mx-auto max-w-4xl px-6 py-10">
-        <div className="space-y-3">
+        <div className="space-y-2">
           {filtered.map((p) => {
             const meta = categoryMeta[p.category];
             const isOpen = openId === p.id;
@@ -388,24 +399,28 @@ export default function PatternsPage() {
             return (
               <div
                 key={p.id}
-                className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                className={`overflow-hidden rounded-2xl border transition-all duration-200 ${
+                  isOpen
+                    ? `${meta.border} bg-white/[0.06]`
+                    : "border-white/8 bg-white/[0.04] hover:border-white/[0.14] hover:bg-white/[0.06]"
+                }`}
               >
                 <button
                   onClick={() => setOpenId(isOpen ? null : p.id)}
                   className="flex w-full items-start gap-4 p-6 text-left"
                 >
                   <span className="text-3xl">{p.emoji}</span>
-                  <div className="flex-1 min-w-0">
+                  <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-lg font-black text-gray-900">{p.name}</span>
-                      <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${meta.bg} ${meta.color}`}>
+                      <span className="text-lg font-black text-white/90">{p.name}</span>
+                      <span className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${meta.bg} ${meta.color} ${meta.border}`}>
                         {meta.label}
                       </span>
                     </div>
-                    <p className="mt-1 text-sm text-gray-500">{p.summary}</p>
+                    <p className="mt-1 text-sm text-white/45">{p.summary}</p>
                   </div>
                   <svg
-                    className={`mt-1 h-5 w-5 shrink-0 text-gray-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                    className={`mt-1 h-4 w-4 shrink-0 text-white/30 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -413,32 +428,31 @@ export default function PatternsPage() {
                 </button>
 
                 {isOpen && (
-                  <div className="border-t border-gray-100 bg-gray-50 px-6 pb-6 pt-5 space-y-5">
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-4">
-                        <p className="mb-2 text-xs font-bold uppercase tracking-wide text-emerald-700">
+                  <div className="space-y-5 border-t border-white/6 px-6 pb-6 pt-5">
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/10 p-4">
+                        <p className="mb-2 text-xs font-bold uppercase tracking-wide text-emerald-400">
                           Когда использовать
                         </p>
                         <ul className="space-y-1.5">
                           {p.when.map((w, i) => (
-                            <li key={i} className="flex gap-2 text-sm text-emerald-800">
-                              <span className="mt-0.5 shrink-0 text-emerald-500">✓</span>
+                            <li key={i} className="flex gap-2 text-sm text-white/60">
+                              <span className="mt-0.5 shrink-0 text-emerald-400">✓</span>
                               {w}
                             </li>
                           ))}
                         </ul>
                       </div>
-                      <div className="rounded-xl border border-rose-100 bg-rose-50 p-4">
-                        <p className="mb-2 text-xs font-bold uppercase tracking-wide text-rose-700">
+                      <div className="rounded-xl border border-rose-500/25 bg-rose-500/10 p-4">
+                        <p className="mb-2 text-xs font-bold uppercase tracking-wide text-rose-400">
                           Когда избегать
                         </p>
-                        <p className="text-sm text-rose-800">{p.avoid}</p>
+                        <p className="text-sm text-white/60">{p.avoid}</p>
                       </div>
                     </div>
-
                     <div>
-                      <p className="mb-2 text-xs font-bold uppercase tracking-wide text-gray-500">Пример</p>
-                      <pre className="overflow-x-auto rounded-xl bg-gray-900 p-5 text-xs leading-relaxed text-gray-100">
+                      <p className="mb-2 text-xs font-bold uppercase tracking-wide text-white/30">Пример</p>
+                      <pre className="overflow-x-auto rounded-xl border border-white/8 bg-black/50 p-5 text-xs leading-relaxed text-white/80">
                         <code>{p.code}</code>
                       </pre>
                     </div>

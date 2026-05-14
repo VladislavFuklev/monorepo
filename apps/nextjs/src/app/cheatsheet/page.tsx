@@ -452,10 +452,10 @@ const isActive = pathname === href;`,
 ];
 
 const groupMeta: Record<Exclude<Group, "all">, { label: string; color: string; bg: string; border: string }> = {
-  routing:     { label: "Routing",     color: "text-sky-700",    bg: "bg-sky-50",    border: "border-sky-200" },
-  rendering:   { label: "Rendering",   color: "text-indigo-700", bg: "bg-indigo-50", border: "border-indigo-200" },
-  data:        { label: "Data",        color: "text-emerald-700",bg: "bg-emerald-50",border: "border-emerald-200" },
-  performance: { label: "Performance", color: "text-amber-700",  bg: "bg-amber-50",  border: "border-amber-200" },
+  routing:     { label: "Routing",     color: "text-sky-400",    bg: "bg-sky-500/15",    border: "border-sky-500/25" },
+  rendering:   { label: "Rendering",   color: "text-indigo-400", bg: "bg-indigo-500/15", border: "border-indigo-500/25" },
+  data:        { label: "Data",        color: "text-emerald-400",bg: "bg-emerald-500/15",border: "border-emerald-500/25" },
+  performance: { label: "Performance", color: "text-amber-400",  bg: "bg-amber-500/15",  border: "border-amber-500/25" },
 };
 
 export default function NextJsCheatsheetPage() {
@@ -472,42 +472,45 @@ export default function NextJsCheatsheetPage() {
 
   return (
     <div>
-      <header className="relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-zinc-900 px-6 py-20 text-white">
+      <header className="relative overflow-hidden bg-[#050508] px-6 py-20 text-white">
         <div
-          className="absolute inset-0 opacity-[0.07]"
+          className="pointer-events-none absolute -top-32 right-0 h-[500px] w-[500px] rounded-full blur-[130px]"
+          style={{ background: "radial-gradient(circle, #6366f125, transparent 70%)" }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage:
-              "radial-gradient(circle at 25% 40%, #6366f1 1px, transparent 1px), radial-gradient(circle at 75% 60%, #818cf8 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
+            backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
           }}
         />
-        <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/3 translate-x-1/3 rounded-full bg-indigo-500/20 blur-3xl" />
-
         <div className="relative mx-auto max-w-4xl">
-          <div className="mb-4 flex items-center gap-2">
+          <div className="mb-6 flex items-center gap-2">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs backdrop-blur-sm transition-colors hover:bg-white/20"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60 backdrop-blur-sm transition-colors hover:bg-white/10 hover:text-white/80"
             >
               ← Вопросы
             </Link>
             <Link
               href="/quiz"
-              className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs backdrop-blur-sm transition-colors hover:bg-white/20"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60 backdrop-blur-sm transition-colors hover:bg-white/10 hover:text-white/80"
             >
               ⚡ Quiz
             </Link>
           </div>
-
-          <div className="mb-2 flex items-center gap-3">
-            <span className="rounded-xl bg-white/10 px-3 py-1.5 text-2xl font-black tracking-tight">N</span>
+          <div className="mb-3 flex items-center gap-4">
+            <div
+              className="flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-black text-indigo-400"
+              style={{ backgroundColor: "#6366f118", border: "1px solid #6366f135" }}
+            >
+              ▲
+            </div>
             <h1 className="text-5xl font-black tracking-tight">Шпаргалка</h1>
           </div>
-          <p className="mt-3 max-w-xl text-lg text-white/70">
+          <p className="mt-3 max-w-xl text-lg text-white/50">
             14 ключевых концепций Next.js 15 — роутинг, рендеринг, данные и оптимизация.
-            Держи под рукой на собесе.
           </p>
-
           <div className="mt-6 flex flex-wrap gap-2">
             {(["all", "routing", "rendering", "data", "performance"] as Group[]).map((g) => (
               <button
@@ -516,12 +519,12 @@ export default function NextJsCheatsheetPage() {
                 className={[
                   "rounded-full px-4 py-1.5 text-sm font-semibold transition-all",
                   group === g
-                    ? "bg-white text-slate-800 shadow"
-                    : "bg-white/10 text-white hover:bg-white/20",
+                    ? "bg-white text-slate-900 shadow"
+                    : "border border-white/10 bg-white/5 text-white/50 hover:bg-white/10 hover:text-white/70",
                 ].join(" ")}
               >
                 {g === "all" ? "Все" : groupMeta[g].label}
-                <span className="ml-1.5 opacity-70">
+                <span className="ml-1.5 opacity-60">
                   {g === "all" ? concepts.length : concepts.filter((c) => c.group === g).length}
                 </span>
               </button>
@@ -536,10 +539,10 @@ export default function NextJsCheatsheetPage() {
           placeholder="Поиск по названию или описанию..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="mb-6 h-11 w-full rounded-xl border border-gray-200 bg-white px-4 text-sm shadow-sm outline-none focus:border-transparent focus:ring-2 focus:ring-indigo-400"
+          className="mb-6 h-11 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-sm text-white/80 placeholder:text-white/25 outline-none transition-colors focus:border-white/25 focus:bg-white/8"
         />
 
-        <div className="space-y-3">
+        <div className="space-y-2">
           {filtered.map((c) => {
             const meta = groupMeta[c.group];
             const isOpen = openId === c.id;
@@ -547,7 +550,11 @@ export default function NextJsCheatsheetPage() {
             return (
               <div
                 key={c.id}
-                className={`overflow-hidden rounded-2xl border bg-white shadow-sm transition-shadow hover:shadow-md ${isOpen ? meta.border : "border-gray-200"}`}
+                className={`overflow-hidden rounded-2xl border transition-all duration-200 ${
+                  isOpen
+                    ? `${meta.border} bg-white/[0.06]`
+                    : "border-white/8 bg-white/[0.04] hover:border-white/[0.14] hover:bg-white/[0.06]"
+                }`}
               >
                 <button
                   onClick={() => setOpenId(isOpen ? null : c.id)}
@@ -555,15 +562,15 @@ export default function NextJsCheatsheetPage() {
                 >
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <code className="text-base font-black text-gray-900">{c.name}</code>
-                      <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${meta.bg} ${meta.color}`}>
+                      <code className="text-base font-black text-white/90">{c.name}</code>
+                      <span className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${meta.bg} ${meta.color} ${meta.border}`}>
                         {meta.label}
                       </span>
                     </div>
-                    <p className="mt-1 text-sm text-gray-500">{c.summary}</p>
+                    <p className="mt-1 text-sm text-white/45">{c.summary}</p>
                   </div>
                   <svg
-                    className={`mt-1 h-5 w-5 shrink-0 text-gray-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                    className={`mt-1 h-4 w-4 shrink-0 text-white/30 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -571,10 +578,10 @@ export default function NextJsCheatsheetPage() {
                 </button>
 
                 {isOpen && (
-                  <div className="space-y-4 border-t border-gray-100 px-5 pb-6 pt-4">
+                  <div className="space-y-4 border-t border-white/6 px-5 pb-6 pt-4">
                     <div>
-                      <p className="mb-1.5 text-xs font-bold uppercase tracking-wide text-gray-400">Сигнатура</p>
-                      <pre className="overflow-x-auto rounded-lg bg-gray-900 px-4 py-3 text-xs text-gray-100">
+                      <p className="mb-1.5 text-xs font-bold uppercase tracking-wide text-white/30">Сигнатура</p>
+                      <pre className="overflow-x-auto rounded-xl border border-white/8 bg-black/50 px-4 py-3 text-xs text-white/80">
                         <code>{c.signature}</code>
                       </pre>
                     </div>
@@ -582,17 +589,17 @@ export default function NextJsCheatsheetPage() {
                     <div className="grid gap-3 sm:grid-cols-2">
                       <div className={`rounded-xl border p-3 ${meta.border} ${meta.bg}`}>
                         <p className={`mb-1 text-xs font-bold uppercase tracking-wide ${meta.color}`}>Вход / Условие</p>
-                        <code className="text-xs text-gray-700">{c.input}</code>
+                        <code className="text-xs text-white/65">{c.input}</code>
                       </div>
-                      <div className="rounded-xl border border-gray-200 bg-gray-50 p-3">
-                        <p className="mb-1 text-xs font-bold uppercase tracking-wide text-gray-500">Результат</p>
-                        <code className="text-xs font-semibold text-gray-900">{c.output}</code>
+                      <div className="rounded-xl border border-white/8 bg-white/5 p-3">
+                        <p className="mb-1 text-xs font-bold uppercase tracking-wide text-white/35">Результат</p>
+                        <code className="text-xs font-semibold text-white/80">{c.output}</code>
                       </div>
                     </div>
 
                     <div>
-                      <p className="mb-1.5 text-xs font-bold uppercase tracking-wide text-gray-400">Пример</p>
-                      <pre className="overflow-x-auto rounded-xl bg-gray-900 p-5 text-xs leading-relaxed text-gray-100">
+                      <p className="mb-1.5 text-xs font-bold uppercase tracking-wide text-white/30">Пример</p>
+                      <pre className="overflow-x-auto rounded-xl border border-white/8 bg-black/50 p-5 text-xs leading-relaxed text-white/80">
                         <code>{c.example}</code>
                       </pre>
                     </div>
@@ -603,7 +610,7 @@ export default function NextJsCheatsheetPage() {
           })}
 
           {filtered.length === 0 && (
-            <div className="rounded-xl border border-gray-200 bg-white py-16 text-center text-gray-400">
+            <div className="rounded-xl border border-white/6 bg-white/[0.03] py-16 text-center text-white/25">
               Ничего не найдено
             </div>
           )}
