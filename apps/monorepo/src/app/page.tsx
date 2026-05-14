@@ -63,7 +63,7 @@ export default function MonorepoPage() {
           <div className="mt-6 flex gap-4 text-sm text-white/60">
             <a href={process.env.NEXT_PUBLIC_REACT_URL ?? "http://localhost:3000"} className="hover:text-white transition-colors">← React</a>
             <a href={process.env.NEXT_PUBLIC_TYPESCRIPT_URL ?? "http://localhost:3001"} className="hover:text-white transition-colors">← TypeScript</a>
-            <a href={process.env.NEXT_PUBLIC_NEXTJS_URL ?? "https://monorepo-nextjs-psi.vercel.app"} className="hover:text-white transition-colors">Next.js →</a>
+            <a href={process.env.NEXT_PUBLIC_NEXTJS_URL ?? "http://localhost:3005"} className="hover:text-white transition-colors">Next.js →</a>
           </div>
         </div>
       </header>
