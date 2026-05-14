@@ -23,9 +23,9 @@ const diffLabel: Record<Difficulty, string> = {
 };
 
 const diffStyle: Record<Difficulty, string> = {
-  junior: "bg-emerald-100 text-emerald-700",
-  middle: "bg-amber-100 text-amber-700",
-  senior: "bg-rose-100 text-rose-700",
+  junior: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
+  middle: "bg-amber-500/20 text-amber-400 border border-amber-500/30",
+  senior: "bg-rose-500/20 text-rose-400 border border-rose-500/30",
 };
 
 function shuffled<T>(arr: T[]): T[] {
@@ -90,61 +90,64 @@ export function QuizMode({ questions, topic, accent, hubUrl, listUrl }: QuizMode
   // ── Setup ──────────────────────────────────────────────────────────────────
   if (phase === "setup") {
     return (
-      <div className="min-h-screen bg-gray-50 px-6 py-12">
-        <div className="mx-auto max-w-lg">
+      <div className="min-h-screen bg-[#050508] px-6 py-10">
+        <div className="mx-auto max-w-md">
+          {/* Back */}
           <Link
             href={listUrl}
-            className="mb-8 inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"
+            className="mb-8 inline-flex items-center gap-1.5 text-sm text-white/40 transition-colors hover:text-white/70"
           >
-            ← К списку вопросов
+            ← К вопросам
           </Link>
 
-          <div
-            className="mb-2 inline-flex h-12 w-12 items-center justify-center rounded-xl text-white text-xl font-black"
-            style={{ backgroundColor: accent }}
-          >
-            ?
+          {/* Hero */}
+          <div className="mb-8">
+            <div
+              className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-black text-white shadow-lg"
+              style={{ backgroundColor: accent, boxShadow: `0 0 32px ${accent}55` }}
+            >
+              ⚡
+            </div>
+            <h1 className="text-3xl font-black text-white">Quiz-режим</h1>
+            <p className="mt-2 text-sm text-white/50">
+              Отвечай по памяти, потом смотри ответ — так запоминается быстрее.
+            </p>
           </div>
 
-          <h1 className="mt-4 text-3xl font-black text-gray-900">Quiz-режим</h1>
-          <p className="mt-2 text-gray-500">
-            Отвечай на вопросы по памяти, затем смотри ответ. Так запоминается быстрее.
-          </p>
-
-          {/* Overall progress */}
-          <div className="mt-6 rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-            <div className="mb-2 flex items-center justify-between text-sm">
-              <span className="font-medium text-gray-700">Общий прогресс</span>
-              <span className="font-bold" style={{ color: accent }}>{percentage}%</span>
+          {/* Progress card */}
+          <div className="mb-4 rounded-2xl border border-white/8 bg-white/5 p-5">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-sm font-medium text-white/70">Общий прогресс</span>
+              <span className="text-sm font-bold" style={{ color: accent }}>{percentage}%</span>
             </div>
-            <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
               <div
                 className="h-full rounded-full transition-all duration-500"
                 style={{ width: `${percentage}%`, backgroundColor: accent }}
               />
             </div>
-            <p className="mt-1.5 text-xs text-gray-400">{count} из {questions.length} вопросов изучено</p>
+            <p className="mt-2 text-xs text-white/30">{count} из {questions.length} изучено</p>
           </div>
 
-          {/* Options */}
-          <div className="mt-6 space-y-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-            <p className="text-sm font-semibold text-gray-700">Настройки сессии</p>
+          {/* Settings card */}
+          <div className="rounded-2xl border border-white/8 bg-white/5 p-5 space-y-5">
+            <p className="text-sm font-semibold text-white/80">Настройки сессии</p>
 
-            {/* Difficulty filter */}
+            {/* Difficulty */}
             <div>
-              <p className="mb-2 text-xs text-gray-500">Сложность</p>
+              <p className="mb-2.5 text-xs text-white/40">Сложность</p>
               <div className="flex flex-wrap gap-2">
                 {(["all", "junior", "middle", "senior"] as const).map((d) => (
                   <button
                     key={d}
                     onClick={() => setDiffFilter(d)}
                     className={[
-                      "rounded-lg px-3 py-1.5 text-sm font-medium transition-all",
+                      "rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all",
                       diffFilter === d
-                        ? "text-white shadow-sm"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200",
+                        ? "text-white shadow-md"
+                        : "bg-white/8 text-white/50 hover:bg-white/12 hover:text-white/80",
                     ].join(" ")}
-                    style={diffFilter === d ? { backgroundColor: accent } : {}}
+                    style={diffFilter === d ? { backgroundColor: accent, boxShadow: `0 0 12px ${accent}55` } : {}}
                   >
                     {d === "all" ? "Все" : diffLabel[d]}
                   </button>
@@ -153,7 +156,7 @@ export function QuizMode({ questions, topic, accent, hubUrl, listUrl }: QuizMode
             </div>
 
             {/* Toggles */}
-            <div className="space-y-3 border-t border-gray-100 pt-4">
+            <div className="space-y-3 border-t border-white/8 pt-4">
               <Toggle
                 label="Только непройденные"
                 checked={onlyIncomplete}
@@ -171,18 +174,18 @@ export function QuizMode({ questions, topic, accent, hubUrl, listUrl }: QuizMode
 
           {/* Start */}
           <div className="mt-6 flex items-center justify-between">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-white/40">
               {previewCount === 0 ? (
-                <span className="text-rose-500">Нет вопросов с такими фильтрами</span>
+                <span className="text-rose-400">Нет подходящих вопросов</span>
               ) : (
-                <><span className="font-semibold text-gray-900">{previewCount}</span> вопросов в сессии</>
+                <><span className="font-semibold text-white/80">{previewCount}</span> вопросов</>
               )}
             </p>
             <button
               onClick={start}
               disabled={previewCount === 0}
-              className="rounded-xl px-6 py-3 text-sm font-bold text-white shadow-md transition-all hover:opacity-90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
-              style={{ backgroundColor: accent }}
+              className="rounded-xl px-7 py-3 text-sm font-bold text-white transition-all hover:scale-[1.03] active:scale-95 disabled:cursor-not-allowed disabled:opacity-30"
+              style={{ backgroundColor: accent, boxShadow: `0 0 20px ${accent}55` }}
             >
               Начать →
             </button>
@@ -196,67 +199,87 @@ export function QuizMode({ questions, topic, accent, hubUrl, listUrl }: QuizMode
   if (phase === "summary") {
     const total = session.known + session.unknown;
     const pct = total === 0 ? 0 : Math.round((session.known / total) * 100);
+    const emoji = pct === 100 ? "🏆" : pct >= 60 ? "💪" : "📚";
+    const message = pct === 100 ? "Идеально!" : pct >= 60 ? "Хороший результат" : "Нужно повторить";
+
     return (
-      <div className="min-h-screen bg-gray-50 px-6 py-12">
-        <div className="mx-auto max-w-lg text-center">
-          <div className="text-5xl">
-            {pct === 100 ? "🏆" : pct >= 60 ? "💪" : "📚"}
-          </div>
-          <h1 className="mt-4 text-3xl font-black text-gray-900">Сессия завершена!</h1>
-          <p className="mt-2 text-gray-500">Вот как ты справился с {total} вопросами</p>
-
-          <div className="mt-8 grid grid-cols-3 gap-4">
-            <StatCard label="Всего" value={total} color="text-gray-900" />
-            <StatCard label="Знаю ✓" value={session.known} color="text-emerald-600" />
-            <StatCard label="Повторю ✗" value={session.unknown} color="text-rose-500" />
+      <div className="min-h-screen bg-[#050508] px-6 py-12">
+        <div className="mx-auto max-w-md">
+          {/* Result hero */}
+          <div className="mb-8 text-center">
+            <div className="mb-4 text-6xl">{emoji}</div>
+            <h1 className="text-3xl font-black text-white">Сессия завершена!</h1>
+            <p className="mt-2 text-white/50">{message} — {total} вопросов пройдено</p>
           </div>
 
-          {/* Score bar */}
-          <div className="mt-6 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="mb-2 flex items-center justify-between text-sm font-semibold">
-              <span className="text-gray-700">Результат сессии</span>
-              <span style={{ color: accent }}>{pct}%</span>
+          {/* Score ring card */}
+          <div className="mb-4 rounded-2xl border border-white/8 bg-white/5 p-6 text-center">
+            <div className="relative mx-auto mb-4 flex h-28 w-28 items-center justify-center">
+              <svg className="absolute inset-0 -rotate-90" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="10" />
+                <circle
+                  cx="50" cy="50" r="42" fill="none" strokeWidth="10"
+                  stroke={accent}
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 42}`}
+                  strokeDashoffset={`${2 * Math.PI * 42 * (1 - pct / 100)}`}
+                  style={{ filter: `drop-shadow(0 0 8px ${accent})`, transition: "stroke-dashoffset 1s ease" }}
+                />
+              </svg>
+              <span className="text-3xl font-black text-white">{pct}<span className="text-lg text-white/50">%</span></span>
             </div>
-            <div className="h-3 w-full overflow-hidden rounded-full bg-gray-100">
-              <div
-                className="h-full rounded-full transition-all duration-700"
-                style={{ width: `${pct}%`, backgroundColor: accent }}
-              />
+            <p className="text-xs font-semibold uppercase tracking-widest text-white/40">Результат сессии</p>
+          </div>
+
+          {/* Stat cards */}
+          <div className="mb-4 grid grid-cols-3 gap-3">
+            <div className="rounded-xl border border-white/8 bg-white/5 p-4 text-center">
+              <p className="text-2xl font-black text-white">{total}</p>
+              <p className="mt-1 text-xs text-white/40">Всего</p>
+            </div>
+            <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-4 text-center">
+              <p className="text-2xl font-black text-emerald-400">{session.known}</p>
+              <p className="mt-1 text-xs text-emerald-500/70">Знаю ✓</p>
+            </div>
+            <div className="rounded-xl border border-rose-500/20 bg-rose-500/10 p-4 text-center">
+              <p className="text-2xl font-black text-rose-400">{session.unknown}</p>
+              <p className="mt-1 text-xs text-rose-500/70">Повторю ✗</p>
             </div>
           </div>
 
           {/* Overall progress */}
-          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm text-left">
-            <div className="mb-2 flex items-center justify-between text-sm">
-              <span className="font-medium text-gray-700">Общий прогресс</span>
-              <span className="font-bold" style={{ color: accent }}>{percentage}%</span>
+          <div className="mb-8 rounded-2xl border border-white/8 bg-white/5 p-5">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-sm font-medium text-white/70">Общий прогресс</span>
+              <span className="text-sm font-bold" style={{ color: accent }}>{percentage}%</span>
             </div>
-            <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
               <div
                 className="h-full rounded-full transition-all duration-500"
                 style={{ width: `${percentage}%`, backgroundColor: accent }}
               />
             </div>
-            <p className="mt-1.5 text-xs text-gray-400">{count} из {questions.length} вопросов изучено</p>
+            <p className="mt-2 text-xs text-white/30">{count} из {questions.length} изучено</p>
           </div>
 
-          <div className="mt-8 flex flex-col gap-3">
+          {/* Actions */}
+          <div className="flex flex-col gap-3">
             <button
               onClick={restart}
-              className="w-full rounded-xl py-3 text-sm font-bold text-white shadow-md transition-all hover:opacity-90"
-              style={{ backgroundColor: accent }}
+              className="w-full rounded-xl py-3.5 text-sm font-bold text-white transition-all hover:scale-[1.02] active:scale-95"
+              style={{ backgroundColor: accent, boxShadow: `0 0 24px ${accent}44` }}
             >
               Ещё одна сессия
             </button>
             <Link
               href={listUrl}
-              className="w-full rounded-xl border border-gray-200 bg-white py-3 text-center text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
+              className="w-full rounded-xl border border-white/10 bg-white/5 py-3.5 text-center text-sm font-semibold text-white/70 transition-colors hover:bg-white/10 hover:text-white"
             >
               К списку вопросов
             </Link>
             <a
               href={hubUrl}
-              className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
+              className="text-center text-sm text-white/30 transition-colors hover:text-white/60"
             >
               На главную Hub →
             </a>
@@ -275,29 +298,31 @@ export function QuizMode({ questions, topic, accent, hubUrl, listUrl }: QuizMode
   const alreadyDone = isCompleted(current.id);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Top bar */}
-      <div className="sticky top-0 z-10 border-b border-gray-200 bg-white/90 px-6 py-3 backdrop-blur-sm">
+    <div className="min-h-screen bg-[#050508]">
+      {/* Sticky top bar */}
+      <div className="sticky top-0 z-10 border-b border-white/8 bg-[#050508]/90 px-6 py-3 backdrop-blur-md">
         <div className="mx-auto flex max-w-2xl items-center justify-between">
           <div className="flex items-center gap-4">
             <button
               onClick={restart}
-              className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
+              className="text-sm text-white/30 transition-colors hover:text-white/70"
             >
               ✕ Выйти
             </button>
-            <span className="text-sm font-semibold text-gray-700">
-              {progress} / {totalQ}
+            <span className="text-sm font-semibold text-white/60">
+              <span className="text-white">{progress}</span>
+              <span className="mx-1 text-white/30">/</span>
+              {totalQ}
             </span>
           </div>
-          <div className="flex items-center gap-3 text-sm">
-            <span className="font-semibold text-emerald-600">✓ {session.known}</span>
-            <span className="font-semibold text-rose-500">✗ {session.unknown}</span>
+          <div className="flex items-center gap-4 text-sm font-semibold">
+            <span className="text-emerald-400">✓ {session.known}</span>
+            <span className="text-rose-400">✗ {session.unknown}</span>
           </div>
         </div>
         {/* Progress bar */}
-        <div className="mx-auto mt-2 max-w-2xl">
-          <div className="h-1 w-full overflow-hidden rounded-full bg-gray-100">
+        <div className="mx-auto mt-2.5 max-w-2xl">
+          <div className="h-1 w-full overflow-hidden rounded-full bg-white/8">
             <div
               className="h-full rounded-full transition-all duration-300"
               style={{ width: `${progressPct}%`, backgroundColor: accent }}
@@ -306,70 +331,83 @@ export function QuizMode({ questions, topic, accent, hubUrl, listUrl }: QuizMode
         </div>
       </div>
 
-      <div className="mx-auto max-w-2xl px-6 py-10">
+      {/* Question area */}
+      <div className="mx-auto max-w-2xl px-6 py-8">
         {/* Question card */}
-        <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-          <div className="mb-4 flex items-center gap-2">
-            <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${diffStyle[current.difficulty]}`}>
-              {diffLabel[current.difficulty]}
-            </span>
-            {alreadyDone && (
-              <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-600">
-                ✓ изучено
+        <div className="rounded-3xl bg-white shadow-2xl">
+          {/* Card header */}
+          <div className="border-b border-gray-100 px-8 pt-7 pb-5">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                current.difficulty === "junior"
+                  ? "bg-emerald-50 text-emerald-700"
+                  : current.difficulty === "middle"
+                  ? "bg-amber-50 text-amber-700"
+                  : "bg-rose-50 text-rose-700"
+              }`}>
+                {diffLabel[current.difficulty]}
               </span>
-            )}
-            {current.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-500">
-                {tag}
-              </span>
-            ))}
+              {alreadyDone && (
+                <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-600">
+                  ✓ изучено
+                </span>
+              )}
+              {current.tags.slice(0, 3).map((tag) => (
+                <span key={tag} className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-500">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <p className="text-xl font-bold leading-snug text-gray-900">{current.question}</p>
+          {/* Question */}
+          <div className="px-8 py-7">
+            <p className="text-xl font-bold leading-snug text-gray-900">{current.question}</p>
 
-          {!revealed ? (
-            <button
-              onClick={() => setRevealed(true)}
-              className="mt-8 w-full rounded-xl py-3.5 text-sm font-bold text-white shadow-md transition-all hover:opacity-90 active:scale-[0.98]"
-              style={{ backgroundColor: accent }}
-            >
-              Показать ответ
-            </button>
-          ) : (
-            <div className="mt-6">
-              <div className="border-t border-gray-100 pt-6">
-                <p className="whitespace-pre-line text-sm leading-relaxed text-gray-700">
-                  {current.answer}
-                </p>
-                {current.code && (
-                  <pre className="mt-4 overflow-x-auto rounded-xl bg-gray-900 p-5 text-xs leading-relaxed text-gray-100">
-                    <code>{current.code}</code>
-                  </pre>
-                )}
-              </div>
+            {!revealed ? (
+              <button
+                onClick={() => setRevealed(true)}
+                className="mt-8 w-full rounded-2xl py-4 text-sm font-bold text-white shadow-lg transition-all hover:scale-[1.01] hover:opacity-95 active:scale-[0.98]"
+                style={{ backgroundColor: accent, boxShadow: `0 8px 24px ${accent}44` }}
+              >
+                Показать ответ
+              </button>
+            ) : (
+              <div className="mt-6">
+                <div className="rounded-2xl bg-gray-50 p-6">
+                  <p className="whitespace-pre-line text-sm leading-relaxed text-gray-700">
+                    {current.answer}
+                  </p>
+                  {current.code && (
+                    <pre className="mt-4 overflow-x-auto rounded-xl bg-gray-900 p-5 text-xs leading-relaxed text-gray-100">
+                      <code>{current.code}</code>
+                    </pre>
+                  )}
+                </div>
 
-              <div className="mt-8 grid grid-cols-2 gap-3">
-                <button
-                  onClick={() => answer(false)}
-                  className="rounded-xl border-2 border-rose-200 bg-rose-50 py-4 text-sm font-bold text-rose-600 transition-all hover:bg-rose-100 active:scale-[0.98]"
-                >
-                  ✗ Повторю ещё
-                </button>
-                <button
-                  onClick={() => answer(true)}
-                  className="rounded-xl py-4 text-sm font-bold text-white shadow-md transition-all hover:opacity-90 active:scale-[0.98]"
-                  style={{ backgroundColor: "#10b981" }}
-                >
-                  ✓ Знаю!
-                </button>
+                <div className="mt-5 grid grid-cols-2 gap-3">
+                  <button
+                    onClick={() => answer(false)}
+                    className="rounded-2xl border-2 border-rose-100 bg-rose-50 py-4 text-sm font-bold text-rose-600 transition-all hover:bg-rose-100 active:scale-[0.97]"
+                  >
+                    ✗ Повторю ещё
+                  </button>
+                  <button
+                    onClick={() => answer(true)}
+                    className="rounded-2xl py-4 text-sm font-bold text-white shadow-lg transition-all hover:opacity-90 active:scale-[0.97]"
+                    style={{ backgroundColor: "#10b981", boxShadow: "0 8px 20px #10b98144" }}
+                  >
+                    ✓ Знаю!
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
-        {/* Keyboard hint */}
-        <p className="mt-4 text-center text-xs text-gray-400">
-          {!revealed ? "Нажми чтобы посмотреть ответ" : "Оцени своё знание честно"}
+        {/* Hint */}
+        <p className="mt-4 text-center text-xs text-white/25">
+          {!revealed ? "Сначала подумай — потом смотри ответ" : "Честно оцени своё знание"}
         </p>
       </div>
     </div>
@@ -382,7 +420,6 @@ function Toggle({
   onChange,
   accent,
 }: {
-  id?: string;
   label: string;
   checked: boolean;
   onChange: (v: boolean) => void;
@@ -390,13 +427,13 @@ function Toggle({
 }) {
   return (
     <label className="flex cursor-pointer items-center justify-between gap-3">
-      <span className="text-sm text-gray-700">{label}</span>
+      <span className="text-sm text-white/60">{label}</span>
       <div
         role="switch"
         aria-checked={checked}
         onClick={() => onChange(!checked)}
         className="relative h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors duration-200"
-        style={{ backgroundColor: checked ? accent : "#e5e7eb" }}
+        style={{ backgroundColor: checked ? accent : "rgba(255,255,255,0.1)" }}
       >
         <span
           className={[
@@ -406,14 +443,5 @@ function Toggle({
         />
       </div>
     </label>
-  );
-}
-
-function StatCard({ label, value, color }: { label: string; value: number; color: string }) {
-  return (
-    <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-      <p className={`text-3xl font-black ${color}`}>{value}</p>
-      <p className="mt-1 text-xs text-gray-500">{label}</p>
-    </div>
   );
 }

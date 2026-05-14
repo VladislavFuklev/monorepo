@@ -42,6 +42,12 @@ export default function NextJsPage() {
             >
               ⚡ Quiz
             </Link>
+            <Link
+              href="/cheatsheet"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs backdrop-blur-sm transition-colors hover:bg-white/20"
+            >
+              📋 Шпаргалка
+            </Link>
           </div>
 
           {/* Heading */}
