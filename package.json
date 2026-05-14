@@ -9,6 +9,7 @@
     "dev:typescript": "turbo run dev --filter=@fintech/app-typescript",
     "dev:monorepo": "turbo run dev --filter=@fintech/app-monorepo",
     "dev:portfolio": "turbo run dev --filter=@fintech/app-portfolio",
+    "dev:nextjs": "turbo run dev --filter=@fintech/app-nextjs",
     "type-check": "turbo run type-check",
     "clean": "turbo run clean"
   },

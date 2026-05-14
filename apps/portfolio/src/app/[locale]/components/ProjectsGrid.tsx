@@ -3,10 +3,11 @@ import { ProjectCard } from "./ProjectCard";
 
 const GITHUB = "https://github.com/VladislavFuklev";
 
-const HUB_URL   = process.env.NEXT_PUBLIC_HUB_URL        ?? "https://monorepo-hub-phi.vercel.app";
-const REACT_URL = process.env.NEXT_PUBLIC_REACT_URL       ?? "https://monorepo-react-orcin.vercel.app";
-const TS_URL    = process.env.NEXT_PUBLIC_TYPESCRIPT_URL  ?? "https://monorepo-typescript.vercel.app";
-const MONO_URL  = process.env.NEXT_PUBLIC_MONOREPO_URL    ?? "https://monorepo-monorepo.vercel.app";
+const HUB_URL    = process.env.NEXT_PUBLIC_HUB_URL        ?? "https://monorepo-hub-phi.vercel.app";
+const REACT_URL  = process.env.NEXT_PUBLIC_REACT_URL      ?? "https://monorepo-react-orcin.vercel.app";
+const TS_URL     = process.env.NEXT_PUBLIC_TYPESCRIPT_URL ?? "https://monorepo-typescript.vercel.app";
+const MONO_URL   = process.env.NEXT_PUBLIC_MONOREPO_URL   ?? "https://monorepo-monorepo.vercel.app";
+const NEXTJS_URL = process.env.NEXT_PUBLIC_NEXTJS_URL     ?? "http://localhost:3005";
 const CRYPTO_URL  = "https://nextapp-mu-gilt.vercel.app/dashboard";
 const WEATHER_URL = "https://weather-widget-six-smoky.vercel.app/signin";
 const FINANCE_URL = "https://dashboard-omega-sandy-89.vercel.app/";
@@ -79,8 +80,25 @@ export function ProjectsGrid() {
           />
         </div>
 
-        <div className="mb-16 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-3">
           <ProjectCard
+            title={t("nextjs.title")}
+            description={t("nextjs.description")}
+            tag={t("nextjs.tag")}
+            icon="▲"
+            gradient="from-slate-600 to-indigo-700"
+            gradientBar="from-slate-500 to-indigo-500"
+            techs={[
+              { label: "Next.js 15" },
+              { label: "App Router" },
+              { label: "TypeScript" },
+            ]}
+            demoUrl={NEXTJS_URL}
+            sourceUrl={`${GITHUB}/monorepo`}
+            {...shared}
+          />
+          <ProjectCard
+            isFeatured
             title={t("typescript.title")}
             description={t("typescript.description")}
             tag={t("typescript.tag")}
@@ -96,6 +114,9 @@ export function ProjectsGrid() {
             sourceUrl={`${GITHUB}/monorepo`}
             {...shared}
           />
+        </div>
+
+        <div className="mb-16 grid grid-cols-1 gap-5 md:grid-cols-3">
           {/* Monorepo — featured, 2 cols */}
           <ProjectCard
             isFeatured

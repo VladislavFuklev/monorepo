@@ -1,7 +1,7 @@
-import { reactQuestions, typescriptQuestions, monorepoQuestions } from "@fintech/interview-data";
+import { reactQuestions, typescriptQuestions, monorepoQuestions, nextjsQuestions } from "@fintech/interview-data";
 import { TopicCard } from "@/components/TopicCard";
 
-const total = reactQuestions.length + typescriptQuestions.length + monorepoQuestions.length;
+const total = reactQuestions.length + typescriptQuestions.length + monorepoQuestions.length + nextjsQuestions.length;
 
 const topics = [
   {
@@ -12,6 +12,15 @@ const topics = [
     icon: "⚛️",
     tag: "Frontend",
     questions: reactQuestions,
+  },
+  {
+    title: "Next.js",
+    description: "App Router, Server Components, Server Actions, кеширование, Streaming и оптимизация.",
+    url: process.env.NEXT_PUBLIC_NEXTJS_URL ?? "http://localhost:3005",
+    gradient: "bg-gradient-to-br from-slate-600 to-indigo-700",
+    icon: "▲",
+    tag: "Framework",
+    questions: nextjsQuestions,
   },
   {
     title: "TypeScript",

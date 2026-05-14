@@ -44,6 +44,11 @@
       "description": "Deep-dive into Turborepo internals — interactive dependency graph, task caching, and pnpm workspace structure.",
       "tag": "Architecture"
     },
+    "nextjs": {
+      "title": "Next.js Interview Prep",
+      "description": "30+ questions covering App Router, Server Components, Server Actions, caching strategies, Streaming, and performance optimization.",
+      "tag": "Framework"
+    },
     "crypto": {
       "title": "Crypto Live (Binance WS)",
       "description": "Single-page Next.js app for real-time cryptocurrency monitoring. Live data via WebSocket (Binance), REST API for exchange rates and weather.",
