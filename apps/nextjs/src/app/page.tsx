@@ -71,8 +71,15 @@ export default function NextJsPage() {
             ))}
           </div>
 
+          {/* Cross-app links */}
+          <div className="mt-5 flex gap-4 text-sm text-white/50">
+            <a href={process.env.NEXT_PUBLIC_REACT_URL ?? "http://localhost:3000"} className="transition-colors hover:text-white">React →</a>
+            <a href={process.env.NEXT_PUBLIC_TYPESCRIPT_URL ?? "http://localhost:3001"} className="transition-colors hover:text-white">TypeScript →</a>
+            <a href={process.env.NEXT_PUBLIC_MONOREPO_URL ?? "http://localhost:3002"} className="transition-colors hover:text-white">Monorepo →</a>
+          </div>
+
           {/* Version badge */}
-          <div className="mt-5 flex items-center gap-3 text-sm text-white/50">
+          <div className="mt-4 flex items-center gap-3 text-sm text-white/50">
             <span className="rounded-full border border-white/10 bg-white/5 px-3 py-0.5 text-xs">
               Next.js 15
             </span>
