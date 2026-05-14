@@ -13,6 +13,7 @@ Contains a **portfolio site** and a suite of **interview preparation apps** — 
 | React Interview Prep | https://monorepo-react-orcin.vercel.app |
 | TypeScript Mastery | https://monorepo-typescript.vercel.app |
 | Monorepo Architecture | https://monorepo-monorepo.vercel.app |
+| Next.js Interview Prep | https://monorepo-nextjs-psi.vercel.app |
 
 ## Structure
 
